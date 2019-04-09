@@ -3,6 +3,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.google.gson.Gson;
 
@@ -16,13 +19,10 @@ import com.google.gson.Gson;
  */
 public class GeoLocator {
 	
-	private Gson jsonParser;
-	
 	/**
 	 * Default constructor for the GeoLocator Instance.
 	 */
 	public GeoLocator() {
-		 jsonParser = new Gson();
 	}
 	
 	/**
@@ -33,7 +33,7 @@ public class GeoLocator {
 	 * @return
 	 * @throws IOException 
 	 */
-	private String requestData(String url) throws IOException {
+	private String urlQuery(String url) throws IOException {
 		
 		// First build URL object and setup connection to site.
 		URL urlFull = new URL(url);
@@ -67,6 +67,62 @@ public class GeoLocator {
 	}
 	
 	/**
+	 * Method to get back Lat,Lon coordinates based on a given street address, 
+	 * returning a Tuple (first,second) pair value containing (Lat,Lon). Throws
+	 * IOException if urlQuery throws IOException due to malformed URL.
+	 * @param address
+	 * @return
+	 * @throws IOException
+	 */
+	public Optional<Tuple<Double,Double>> getLatLon(String address) 
+			throws IOException {
+		// Initialize variables.
+		String[] token = address.split(" ");
+		StringBuilder query = new StringBuilder();
+		String geoData;
+		
+		// Build query url
+		query.append("https://nominatim.openstreetmap.orrg/search?q=");
+		
+		// Check for a nonsense input (no word characters).
+		Pattern noWord = Pattern.compile("^\\W*$");
+		Matcher match = noWord.matcher(address);
+		if (match.find()) {
+			// return empty optional if query was nonsense or empty
+			return Optional.empty();
+		}
+		
+		// Loop through the string of tokens and append to the url
+		for (int ind = 0; ind < token.length; ind ++) {
+			query.append(token[ind]);
+			
+			// Check if not the last token
+			if (ind < token.length -1) {
+				query.append("+");
+			}
+		}
+		
+		// After appending all tokens, finish url with output details.
+		query.append("&format=json&addressdetails=1");
+		
+		// Request data with url query, may throw an IOException to propagate up
+		geoData = urlQuery(query.toString());
+		
+		// Check to see if query returned nothing
+		if (geoData == null) {
+			// return empty optional
+			return Optional.empty();
+		}
+		
+		JsonObject jsonGeo = new Gson().fromJson(geoData, JsonObject.class);
+		Double latitude = jsonGeo.get("lat").getAsDouble();
+		Double longitude = jsonGeo.get("lon").getAsDouble();
+		
+		// return empty optional if query was empty.
+		return Optional.of(new Tuple<Double,Double>(latitude, longitude));
+	}
+	
+	/**
 	 * A Tuple sub-class for use in returning multiple values of generic type
 	 * from a given method.
 	 * @author roque
@@ -78,7 +134,7 @@ public class GeoLocator {
 		private final T first;
 		private final U second;
 		
-		private Tuple(T first, U second) {
+		public Tuple(T first, U second) {
 			this.first = first;
 			this.second = second;
 		}
