@@ -49,21 +49,21 @@ class GeoLocatorTest {
 	@Test
 	void tupleTest() {
 		// Mixed positive and negative double test.
-		assertEquals(45.2, latLonMix.getFirst(), 
+		assertEquals((Double) 45.2, latLonMix.getFirst(), 
 				"Tuple is not outputting first positive values correctly.");
-		assertEquals(-160.4, latLonMix.getSecond(), 
+		assertEquals((Double) (-160.4), latLonMix.getSecond(), 
 				"Tuple is not outputting second negative values correctly.");
 		
 		// Zero as double test.
-		assertEquals(0., latLon0.getFirst(), 
+		assertEquals((Double) 0., latLon0.getFirst(), 
 				"Tuple is not outputting first zero values correctly.");
-		assertEquals(0.0, latLon0.getSecond(), 
+		assertEquals((Double) 0.0, latLon0.getSecond(), 
 				"Tuple is not outputting second zero values correctly.");
 		
 		// Minimum and Maximum lat lon values test.
-		assertEquals(-90.0, latLonMinMax.getFirst(), 
+		assertEquals((Double) (-90.0), latLonMinMax.getFirst(), 
 				"Tuple is not outputting first mininum lat values correctly.");
-		assertEquals(180., latLonMinMax.getSecond(), 
+		assertEquals((Double) 180., latLonMinMax.getSecond(), 
 				"Tuple is not outputting second maximum lon values correctly.");
 	}
 

@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 /**
  * A class used to parse street address into Latitude and Longitude data using
