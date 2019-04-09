@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.*;
 
 import com.google.gson.Gson;
 
@@ -65,6 +64,32 @@ public class GeoLocator {
 		br.close();
 		
 		return input.toString();
+	}
+	
+	/**
+	 * A Tuple sub-class for use in returning multiple values of generic type
+	 * from a given method.
+	 * @author roque
+	 *
+	 * @param <T>
+	 * @param <U>
+	 */
+	public static class Tuple<T,U> {
+		private final T first;
+		private final U second;
+		
+		private Tuple(T first, U second) {
+			this.first = first;
+			this.second = second;
+		}
+		
+		public T getFirst() {
+			return first;
+		}
+		
+		public U getSecond() {
+			return second;
+		}
 	}
 	
 }
