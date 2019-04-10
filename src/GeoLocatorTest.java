@@ -2,7 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Optional;
 
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class GeoLocatorTest {
@@ -26,28 +26,28 @@ class GeoLocatorTest {
 	static GeoLocator.Tuple<Double,Double> oneWordLatLon =  null;
 	static GeoLocator.Tuple<Double,Double> commaLatLon =  null;
 	static GeoLocator.Tuple<Double,Double> fullLatLon =  null;
-	static GeoLocator.Tuple<Double,Double> nonsenseLatLon =  null;
 	
-	@BeforeClass
+	@BeforeAll
 	public static void setUpBeforeClass() {
 		// Setup Tuple values to test the subclass
 		latLonMix = new GeoLocator.Tuple<Double,Double>(45.2, -160.4);
 		latLon0 = new GeoLocator.Tuple<Double,Double>(0., 0.);
 		latLonMinMax = new GeoLocator.Tuple<Double,Double>(-90.0, 180.0);
 		
-		// TODO
 		// Setup urlQuery and getLatLon answers
-		oneWordLatLon = new GeoLocator.Tuple<Double,Double>(45.2, -160.4);
-		commaLatLon = new GeoLocator.Tuple<Double,Double>(0., 0.);
-		fullLatLon = new GeoLocator.Tuple<Double,Double>(-90.0, 180.0);
-		nonsenseLatLon = new GeoLocator.Tuple<Double,Double>(-90.0, 180.0);
+		oneWordLatLon = new GeoLocator.Tuple<Double,Double>(
+				39.9524152, -75.1635755);
+		commaLatLon = new GeoLocator.Tuple<Double,Double>(
+				39.9524152, -75.1635755);
+		fullLatLon = new GeoLocator.Tuple<Double,Double>(
+				39.9545921, -75.1732373);
 	}
 	
 	/**
 	 * Tests of the Tuple subclass of the GeoLocation class.
 	 */
 	@Test
-	void tupleTest() {
+	public void tupleTest() {
 		// Mixed positive and negative double test.
 		assertEquals((Double) 45.2, latLonMix.getFirst(), 
 				"Tuple is not outputting first positive values correctly.");
@@ -67,8 +67,11 @@ class GeoLocatorTest {
 				"Tuple is not outputting second maximum lon values correctly.");
 	}
 
+	/**
+	 * Tests of the urlQuery for various inputs.
+	 */
 	@Test
-	void queryTest() {
+	public void queryTest() {
 		// Comma Address Test - normally formed input to query, test lat & lon
 		try {
 		assertEquals(commaLatLon.getFirst(), 
@@ -83,17 +86,16 @@ class GeoLocatorTest {
 		
 		// Nonsense Address Test - Possible malformed input to query
 		try {
-		assertEquals(nonsenseLatLon.getFirst(), 
-				geo.getLatLon(nonsenseAddress).get().getFirst(), 
-				"Nonsense address is not returning the correct latitude");
-		assertEquals(nonsenseLatLon.getSecond(), 
-				geo.getLatLon(nonsenseAddress).get().getSecond(), 
-				"Nonsense address is not returning the correct longitude");
+		assertEquals(Optional.empty(), geo.getLatLon(emptyAddress), 
+				"Nonsense address is not returning the empty optional.");
 		} catch (Exception e) {
 			fail("Nonsense address caused exception.");
 		}
 	}
 	
+	/**
+	 * Test of the getLatLon method with various input.
+	 */
 	@Test
 	void getLatLonTest() {
 		// Empty Address Test

@@ -83,7 +83,7 @@ public class GeoLocator {
 		String geoData;
 		
 		// Build query url
-		query.append("https://nominatim.openstreetmap.orrg/search?q=");
+		query.append("https://nominatim.openstreetmap.org/search?q=");
 		
 		// Check for a nonsense input (no word characters).
 		Pattern noWord = Pattern.compile("^\\W*$");
@@ -115,9 +115,11 @@ public class GeoLocator {
 			return Optional.empty();
 		}
 		
-		JsonObject jsonGeo = new Gson().fromJson(geoData, JsonObject.class);
-		Double latitude = jsonGeo.get("lat").getAsDouble();
-		Double longitude = jsonGeo.get("lon").getAsDouble();
+		// Now parse query results as an array of json objects
+		JsonObject[] jsonGeo = new Gson().fromJson(geoData, JsonObject[].class);
+		// Then fetch the latitude and longitude from the top result
+		Double latitude = jsonGeo[0].get("lat").getAsDouble();
+		Double longitude = jsonGeo[0].get("lon").getAsDouble();
 		
 		// return empty optional if query was empty.
 		return Optional.of(new Tuple<Double,Double>(latitude, longitude));
@@ -148,5 +150,4 @@ public class GeoLocator {
 			return second;
 		}
 	}
-	
 }
