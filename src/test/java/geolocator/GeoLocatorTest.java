@@ -1,5 +1,5 @@
-package test.java.geolocator;
-import main.java.geolocator.GeoLocator;
+package geolocator;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
