@@ -1,9 +1,11 @@
-import static org.junit.jupiter.api.Assertions.*;
+package test.java.geolocator;
+import main.java.geolocator.GeoLocator;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 class GeoLocatorTest {
 	// GeoLocator Instance

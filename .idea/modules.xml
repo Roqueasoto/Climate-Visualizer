@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Climate-Visualizer.iml" filepath="$PROJECT_DIR$/Climate-Visualizer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Climate-Visualizer_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Climate-Visualizer_main.iml" group="Climate-Visualizer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Climate-Visualizer_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Climate-Visualizer_test.iml" group="Climate-Visualizer" />
+    </modules>
+  </component>
+</project>
