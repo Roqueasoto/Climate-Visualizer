@@ -22,12 +22,6 @@ import com.google.gson.JsonObject;
 public class GeoLocator {
 	
 	/**
-	 * Default constructor for the GeoLocator Instance.
-	 */
-	public GeoLocator() {
-	}
-	
-	/**
 	 * Helper method to query the Nominatim web service for geocoding data.
 	 * This method raises an IOException if the url is not built properly and
 	 * returns null if the connection to the web service cannot be reached.
@@ -131,31 +125,5 @@ public class GeoLocator {
 		
 		// return empty optional if query was empty.
 		return Optional.of(new Tuple<Double,Double>(latitude, longitude));
-	}
-	
-	/**
-	 * A Tuple sub-class for use in returning multiple values of generic type
-	 * from a given method.
-	 * @author roque
-	 *
-	 * @param <T>
-	 * @param <U>
-	 */
-	public static class Tuple<T,U> {
-		private final T first;
-		private final U second;
-		
-		public Tuple(T first, U second) {
-			this.first = first;
-			this.second = second;
-		}
-		
-		public T getFirst() {
-			return first;
-		}
-		
-		public U getSecond() {
-			return second;
-		}
 	}
 }

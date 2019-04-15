@@ -1,39 +1,65 @@
 package com.climate.climatevisualizer.web;
 
+import com.climate.geolocator.GeoLocator;
+import com.climate.geolocator.Tuple;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.io.IOException;
+import java.util.Optional;
+
 @Controller
 public class ClimateController {
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String homePageGet (ModelMap model) {
         // TODO Fetch Addresses
         String address = "";
 
-        model.put("address", address);
+        model.addAttribute("address", new Address());
 
         return "index";
     }
 
     @GetMapping("/climate")
     public String climatePageGet (ModelMap model) {
-        String address = "";
+        // Initialize GeoLocator
+        GeoLocator geoCode = new GeoLocator();
+
+        // Find Lat & Lon and add them to the model.
+        try {
+            // First get the Optional Tuple response from getLatlon
+            Optional<Tuple<Double, Double>> latLon = geoCode.getLatLon(
+                    ((Address) model.get("address")).getAddress());
+
+            // Then test to see if the response was empty
+            if (latLon.isPresent()) {
+                // If response is empty, then send to failed query page
+                return "failedQuery";
+            }
+
+            // If response is available, then strip optional and add to model
+            model.addAttribute("latLon", latLon.get());
+
+        } catch (IOException e) {
+            // if the query raises an error, then send to the failed query page
+            return "failedQuery";
+        }
 
         // TODO Add resulting figure
-        model.put("figure", "");
 
-        return "climate";
+        // Take user to the final page.
+        return "redirect:/climate";
     }
 
-    @PostMapping("/")
-    public String AddressPost (String address) {
+    @PostMapping("/index")
+    public String AddressPost (@ModelAttribute Address address) {
 
         // TODO Post form data from form
 
-        return "redirect:/climate";
+        return "climate";
     }
 }
