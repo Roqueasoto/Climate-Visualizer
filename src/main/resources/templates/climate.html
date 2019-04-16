@@ -7,8 +7,8 @@
 </head>
 <body>
     <h1>Result</h1>
-    <p th:text="'Latitude : ' + ${latLon.first}" />
-    <p th:text="'Latitude : ' + ${latLon.second}" />
+    <!--/*@thymesVar id="results" type="ClimateResults"*/-->
+    <p th:text="'Latitude : ' + ${results?.lat}" />
     <a href="/index">Try another address!</a>
 </body>
 </html>

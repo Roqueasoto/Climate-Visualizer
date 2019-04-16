@@ -12,9 +12,9 @@ class GeoLocatorTest {
 	private static GeoLocator geo = new GeoLocator();
 	
 	// For tuple tests
-    private static GeoLocator.Tuple<Double,Double> latLonMix =  null;
-    private static GeoLocator.Tuple<Double,Double> latLon0 =  null;
-    private static GeoLocator.Tuple<Double,Double> latLonMinMax =  null;
+    private static Tuple<Double,Double> latLonMix =  null;
+    private static Tuple<Double,Double> latLon0 =  null;
+    private static Tuple<Double,Double> latLonMinMax =  null;
 	
 	// For urlQuery and getLatLon tests
     private static String emptyAddress = "";
@@ -24,25 +24,25 @@ class GeoLocatorTest {
     private static String fullAddress =
 			"1400 John F Kennedy Blvd, Philadelphia, PA 19107, USA";
     private static String nonsenseAddress = "Blue98f sbdbbsld A";
+    private static String singleAddress = "1500 Locust Apt #2306";
 
-    private static GeoLocator.Tuple<Double,Double> oneWordLatLon =  null;
-    private static GeoLocator.Tuple<Double,Double> commaLatLon =  null;
-    private static GeoLocator.Tuple<Double,Double> fullLatLon =  null;
+    private static Tuple<Double,Double> oneWordLatLon =  null;
+    private static Tuple<Double,Double> commaLatLon =  null;
+    private static Tuple<Double,Double> fullLatLon =  null;
+    private static Tuple<Double,Double> singleLatLon =  null;
 	
 	@BeforeAll
 	private static void setUpBeforeClass() {
 		// Setup Tuple values to test the subclass
-		latLonMix = new GeoLocator.Tuple<Double,Double>(45.2, -160.4);
-		latLon0 = new GeoLocator.Tuple<Double,Double>(0., 0.);
-		latLonMinMax = new GeoLocator.Tuple<Double,Double>(-90.0, 180.0);
+		latLonMix = new Tuple<>(45.2, -160.4);
+		latLon0 = new Tuple<>(0., 0.);
+		latLonMinMax = new Tuple<>(-90.0, 180.0);
 		
 		// Setup urlQuery and getLatLon answers
-		oneWordLatLon = new GeoLocator.Tuple<Double,Double>(
-				39.9524152, -75.1635755);
-		commaLatLon = new GeoLocator.Tuple<Double,Double>(
-				39.9524152, -75.1635755);
-		fullLatLon = new GeoLocator.Tuple<Double,Double>(
-				39.9545921, -75.1732373);
+		oneWordLatLon = new Tuple<>(39.9524152, -75.1635755);
+		commaLatLon = new Tuple<>(39.9524152, -75.1635755);
+		fullLatLon = new Tuple<>(39.9545921, -75.1732373);
+        singleLatLon = new Tuple<>(39.9545921, -75.1732373);
 	}
 	
 	/**
@@ -140,5 +140,19 @@ class GeoLocatorTest {
 			fail("Full address caused exception.", e);
 		}
 	}
+
+    /**
+     * Test of the getLatLon method with a single address
+     */
+    @Test
+    public void getLatLonSingleTest() {
+        // Single Address Test
+        try {
+            assertEquals(Optional.empty(), geo.getLatLon(singleAddress),
+                    "Empty address is not returning the empty optional.");
+        } catch (Exception e) {
+            fail("Empty address caused exception.", e);
+        }
+    }
 }
 

@@ -104,8 +104,10 @@ public class GeoLocator {
 		// Request data with url query, may throw an IOException to propagate up
 		geoData = urlQuery(query.toString());
 		
-		// Check to see if query returned null
-		if (geoData == null) {
+		// Check to see if query returned null or html
+        Pattern noHtml = Pattern.compile(".*DOCTYPE html.*");
+        Matcher matchHtml = noHtml.matcher(geoData);
+		if (geoData == null || matchHtml.find()) {
 			// return empty optional
 			return Optional.empty();
 		}

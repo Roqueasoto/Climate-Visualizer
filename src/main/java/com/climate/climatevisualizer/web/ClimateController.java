@@ -42,7 +42,9 @@ public class ClimateController {
             }
 
             // If response is available, then strip optional and add to model
-            model.addAttribute("latLon", latLon.get());
+            ClimateResults results = new ClimateResults(latLon.get().getFirst(),
+                            latLon.get().getSecond());
+            model.addAttribute("results", results);
 
         } catch (IOException e) {
             // if the query raises an error, then send to the failed query page
