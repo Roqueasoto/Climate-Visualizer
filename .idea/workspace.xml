@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="421f4be7-26c1-4c20-880c-cb27a7d0cb04" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/climate/climatevisualizer/web/ClimateResults.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/climate/climatevisualizer/web/ClimateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/climate/climatevisualizer/web/ClimateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/climate/geolocator/GeoLocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/climate/geolocator/GeoLocator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/climate.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/climate.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/failedQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/failedQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/climate/geolocator/GeoLocatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/climate/geolocator/GeoLocatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -46,7 +43,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="1" />
-          <entry key="HTML" value="3" />
+          <entry key="HTML" value="6" />
           <entry key="JAVA" value="16" />
           <entry key="Properties" value="2" />
           <entry key="ThymeleafExpressions" value="1" />
@@ -55,8 +52,8 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="2" />
-          <entry key="HTML" value="1098" />
-          <entry key="JAVA" value="2320" />
+          <entry key="HTML" value="1199" />
+          <entry key="JAVA" value="2406" />
           <entry key="Properties" value="11" />
         </counts>
       </usages-collector>
@@ -64,72 +61,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/climate/climatevisualizer/web/ClimateController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="35" column="40" lean-forward="true" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="51" lean-forward="true" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
+            <state relative-caret-position="221">
+              <caret line="13" column="11" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/climate/climatevisualizer/web/ClimateController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/climate/climatevisualizer/web/ClimateResults.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/failedQuery.html">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="42" selection-start-column="42" selection-end-column="42" />
-              <folding>
-                <element signature="e#314#315#0" expanded="true" />
-                <element signature="e#340#341#0" expanded="true" />
-                <element signature="e#378#379#0" expanded="true" />
-                <element signature="e#408#409#0" expanded="true" />
-                <element signature="e#438#439#0" expanded="true" />
-                <element signature="e#464#465#0" expanded="true" />
-                <element signature="e#502#503#0" expanded="true" />
-                <element signature="e#532#533#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/climate/geolocator/GeoLocatorTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="721">
-              <caret line="153" column="55" lean-forward="true" selection-start-line="153" selection-start-column="55" selection-end-line="153" selection-end-column="55" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/climate/geolocator/GeoLocator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="750">
-              <caret line="109" column="34" selection-start-line="109" selection-start-column="31" selection-end-line="109" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/climate/climatevisualizer/ClimateVisualizerApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+              <caret selection-end-line="12" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -137,26 +94,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/climate.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="60" lean-forward="true" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/9.0.17/22819cd1fae898e96ca84a3e8394b0f0b15d9f17/tomcat-embed-core-9.0.17-sources.jar!/org/apache/catalina/authenticator/AuthenticatorBase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="489" selection-start-line="489" selection-end-line="489" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="187">
+              <caret line="11" column="51" lean-forward="true" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -166,8 +105,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -588,13 +527,14 @@
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/climate/climatevisualizer/web/Address.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/climate/geolocator/Tuple.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/failedQuery.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/climate/climatevisualizer/web/ClimateResults.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/climate.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/climate/climatevisualizer/web/ClimateController.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/climate/geolocator/GeoLocatorTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/climate/geolocator/GeoLocator.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/wait.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/climate/climatevisualizer/web/ClimateController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/climate.html" />
       </list>
     </option>
   </component>
@@ -606,7 +546,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-14" />
-    <option name="width" value="1823" />
+    <option name="width" value="2100" />
     <option name="height" value="2111" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -751,7 +691,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555378711204" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555479120008" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Global Libraries" />
@@ -776,7 +716,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.GeoLocatorTest">
+  <component name="RunManager" selected="Spring Boot.ClimateVisualizerApplication">
     <configuration name="GeoLocatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="climate-visualizer" />
       <extension name="coverage">
@@ -818,7 +758,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1555015386312</updated>
-      <workItem from="1555015388731" duration="28832000" />
+      <workItem from="1555015388731" duration="39251000" />
     </task>
     <servers />
   </component>
@@ -855,10 +795,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28832000" />
+    <option name="totallyTimeSpent" value="39251000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="0" width="1215" height="1407" extended-state="0" />
+    <frame x="-9" y="0" width="1400" height="1407" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Designer" />
@@ -867,7 +807,7 @@
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Capture Tool" />
       <window_info id="Web" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.33593073" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28955224" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Build" weight="0.32941177" />
       <window_info anchor="bottom" id="Spring" />
@@ -942,6 +882,31 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>model.addAttribute(&quot;input&quot;, new Address())</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>model</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>model.get(&quot;input&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>model.get(&quot;address&quot;);</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>((Address) model.get(&quot;address&quot;)).getAddress()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>matchHtml.find()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -978,13 +943,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/9.0.17/22819cd1fae898e96ca84a3e8394b0f0b15d9f17/tomcat-embed-core-9.0.17-sources.jar!/org/apache/catalina/authenticator/AuthenticatorBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="489" selection-start-line="489" selection-end-line="489" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/climate/climatevisualizer/web/Address.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -992,24 +950,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/failedQuery.html">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/climate/geolocator/GeoLocatorTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+        <state relative-caret-position="721">
+          <caret line="153" column="55" lean-forward="true" selection-start-line="153" selection-start-column="55" selection-end-line="153" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/climate/geolocator/GeoLocator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="51" lean-forward="true" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/climate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="60" lean-forward="true" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
+        <state relative-caret-position="750">
+          <caret line="109" column="34" selection-start-line="109" selection-start-column="31" selection-end-line="109" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -1037,30 +991,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/9.0.17/22819cd1fae898e96ca84a3e8394b0f0b15d9f17/tomcat-embed-core-9.0.17-sources.jar!/org/apache/catalina/authenticator/AuthenticatorBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="489" selection-start-line="489" selection-end-line="489" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/wait.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/failedQuery.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="12" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/climate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="51" lean-forward="true" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="11" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/climate/climatevisualizer/web/ClimateController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+        <state relative-caret-position="340">
+          <caret line="35" column="40" lean-forward="true" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/climate/geolocator/GeoLocatorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="721">
-          <caret line="153" column="55" lean-forward="true" selection-start-line="153" selection-start-column="55" selection-end-line="153" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/climate/geolocator/GeoLocator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="109" column="34" selection-start-line="109" selection-start-column="31" selection-end-line="109" selection-end-column="47" />
         </state>
       </provider>
     </entry>

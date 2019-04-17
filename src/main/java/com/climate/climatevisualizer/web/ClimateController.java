@@ -17,15 +17,15 @@ public class ClimateController {
     @GetMapping("/index")
     public String homePageGet (ModelMap model) {
         // TODO Fetch Addresses
-        String address = "";
 
-        model.addAttribute("address", new Address());
+        model.addAttribute("input", new Address());
 
         return "index";
     }
 
-    @GetMapping("/climate")
-    public String climatePageGet (ModelMap model) {
+    @PostMapping("/index")
+    public String AddressPost (@ModelAttribute Address input,
+                               ModelMap model) {
         // Initialize GeoLocator
         GeoLocator geoCode = new GeoLocator();
 
@@ -33,17 +33,17 @@ public class ClimateController {
         try {
             // First get the Optional Tuple response from getLatlon
             Optional<Tuple<Double, Double>> latLon = geoCode.getLatLon(
-                    ((Address) model.get("address")).getAddress());
+                    input.getAddress());
 
             // Then test to see if the response was empty
-            if (latLon.isPresent()) {
+            if (!latLon.isPresent()) {
                 // If response is empty, then send to failed query page
                 return "failedQuery";
             }
 
             // If response is available, then strip optional and add to model
             ClimateResults results = new ClimateResults(latLon.get().getFirst(),
-                            latLon.get().getSecond());
+                    latLon.get().getSecond());
             model.addAttribute("results", results);
 
         } catch (IOException e) {
@@ -54,14 +54,6 @@ public class ClimateController {
         // TODO Add resulting figure
 
         // Take user to the final page.
-        return "redirect:/climate";
-    }
-
-    @PostMapping("/index")
-    public String AddressPost (@ModelAttribute Address address) {
-
-        // TODO Post form data from form
-
         return "climate";
     }
 }
