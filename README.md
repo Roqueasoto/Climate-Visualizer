@@ -1,3 +1,2 @@
 # Climate-Visualizer
-
-This is the Climate Visualizer README.
+Climate Visualizer Web App
