@@ -7,6 +7,8 @@ public class WeatherDatabase {
 	//Longitude from data set is -179.750 to 179.750 (0.5 Degree increments)
 	
 	public Year[] yearlyTemp = new Year[118];
+	public double bestLon;
+	public double bestLat = -1000;
 	
 	
 	public String[] allFiles() {
@@ -24,7 +26,7 @@ public class WeatherDatabase {
 	
 	public WeatherDatabase(double actualLon, double actualLat) {
 		//First, find the nearest lon in the dataset
-		double bestLon = 0;
+		bestLon = 0;
 		double nearest = -179.75;		
 		boolean notFound = true;
 		while (notFound) {
@@ -34,7 +36,7 @@ public class WeatherDatabase {
 				notFound = false;	
 			}
 			nearest = nearest + 0.5;
-		}	
+		}
 		
 		//Initialize bestRow, which will be found in the first file
 		int bestRow = 0;
@@ -42,8 +44,6 @@ public class WeatherDatabase {
 		String[] yearlyFiles = allFiles();
 		for (int i = 0; i < 118; i++) {
 			File f = new File(yearlyFiles[i]);
-			
-			double bestLat = -1000;
 
 			
 			if (i == 0) {
@@ -96,13 +96,14 @@ public class WeatherDatabase {
 						}
 						
 						currentLine++;
-					}				
+					}
 					sc.close();			
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
+			
 			
 			else {
 				try {
@@ -151,6 +152,14 @@ public class WeatherDatabase {
 		
 		
 		
+	}
+
+	public double getBestLon() {
+		return bestLon;
+	}
+
+	public double getBestLat() {
+		return bestLat;
 	}
 
 	public Year[] getYearlyTemp() {
