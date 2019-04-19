@@ -58,8 +58,38 @@ body {
     color: white;
 }
 
+.description p {
+    color: white;
+}
+
 .description form {
     color: white;
     font-size: 1.3rem;
     line-height: 1.5;
+}
+
+.description a {
+    border:1px solid #6ab446;
+    background: #6ab446;
+    border-radius: 0;
+    color: white;
+}
+
+.description a:hover {
+    border:1px solid white;
+    background: white;
+    color: black;
+}
+
+.btn{
+    border:1px solid #6ab446;
+    background: #6ab446;
+    border-radius: 0;
+    color: white;
+}
+
+.btn:hover {
+    border:1px solid white;
+    background: white;
+    color: black;
 }

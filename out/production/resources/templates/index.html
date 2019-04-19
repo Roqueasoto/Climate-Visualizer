@@ -35,11 +35,12 @@
     <header class="page-header header container-fluid">
         <div class="overlay"></div>
         <div class="description">
-            <h1>Form</h1>
+            <h1>Climate Change Visualizer</h1>
             <form action="climate.html" th:action="@{/}" th:object="${input}"
                   method="post">
                 <p>Address: <input type="text" th:field="*{address}" /></p>
-                <p><input type="submit" value="Submit" /></p>
+                <p><input class="btn btn-outline-secondary btn-lg" type="submit"
+                          value="Submit"/></p>
             </form>
         </div>
     </header>
