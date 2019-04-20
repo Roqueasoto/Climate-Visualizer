@@ -49,7 +49,6 @@ body {
     top: 45%;
     transform: translate(-50%, -55%);
     text-align: center;
-    outline: 3px solid black;
     background: rgba(106,180,70,0.6);
     padding: 35px;
 }
@@ -92,4 +91,13 @@ body {
     border:1px solid white;
     background: white;
     color: black;
+}
+
+html {
+    background-color: black;
+}
+
+.form-group small {
+    color: white;
+    font-size: small;
 }

@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
     <title>Climate Visualization App</title>
+
+    <!-- Loading Libraries and Stylesheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <!-- Loading Script -->
+    <script src="js/main.js"></script>
 </head>
 <body>
     <!-- Beginning of Navbar -->
     <nav class="navbar navbar-expand-md">
 
-        <a class="navbar-brand" href="/">Logo</a>
+        <a class="navbar-brand" href="/">Climate Change Visualizer</a>
         <button class="navbar-toggler navbar-dark" type="button"
                 data-toggle="collapse" data-target="#main-navigation">
             <span class="navbar-toggler-icon"></span>
@@ -34,21 +42,32 @@
     <!-- End of Navbar -->
     <header class="page-header header container-fluid">
         <div class="overlay"></div>
-        <div class="description">
-            <h1>Climate Change Visualizer</h1>
+        <div class="description rounded">
+            <h1>Welcome to the Climate Change Visualizer!</h1>
+            <p>Would you like to learn about how your city or town has
+                changed as a result of climate change over the past 100
+                years? Just input your address or the name of your city and
+                country below and you can take a look at what the climate
+                record shows.</p>
             <form action="climate.html" th:action="@{/}" th:object="${input}"
                   method="post">
-                <p>Address: <input type="text" th:field="*{address}" /></p>
-                <p><input class="btn btn-outline-secondary btn-lg" type="submit"
-                          value="Submit"/></p>
+                <div class="form-group">
+                    <label class for="lookUpAddress">Location</label>
+                    <input type="text" class="form-control"
+                           id="lookUpAddress" placeholder="City, Country"
+                           th:field="*{address}" aira-describedby="addressHelp">
+                    <small id="addressHelp" class="form-text">
+                        You can put in a town/city and country, or a street
+                        address (No apartment numbers or postal codes though!).
+                    </small>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </header>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- jQuery first in the head, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- Optional JavaScript -->
-    <script src="js/main.js"></script>
 </body>
 </html>
