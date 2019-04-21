@@ -1,7 +1,7 @@
 body {
-    padding: 0;
     margin: 0;
     background: #f2f6e9;
+    padding: 0;
 }
 
 /*--- navigation bar ---*/
@@ -28,10 +28,12 @@ body {
     justify-content: flex-end;
 }
 
+/*--- navigation bar end ---*/
+
 .header {
     background-size: cover;
-    background: url('../images/header-test.jpg') center;
     position: relative;
+    background: url('../images/Earth3.jpg') no-repeat center;
 }
 
 .overlay {
@@ -43,14 +45,30 @@ body {
     background: rgba(0,0,0,0.6);
 }
 
-.description {
-    left: 50%;
-    position: absolute;
-    top: 45%;
-    transform: translate(-50%, -55%);
-    text-align: center;
-    background: rgba(106,180,70,0.6);
-    padding: 35px;
+@media screen and (max-width: 480px){
+    .description {
+        left: 50%;
+        position: absolute;
+        top: 45%;
+        transform: translate(-50%, -55%);
+        text-align: center;
+        background: rgba(106,180,70,0.6);
+        padding: 35px;
+        height: 75%;
+        overflow-y: scroll;
+    }
+}
+
+@media screen and (min-width:  481px){
+    .description {
+        left: 50%;
+        position: absolute;
+        top: 45%;
+        transform: translate(-50%, -55%);
+        text-align: center;
+        background: rgba(106,180,70,0.6);
+        padding: 35px;
+    }
 }
 
 .description h1 {
@@ -59,6 +77,7 @@ body {
 
 .description p {
     color: white;
+    font-size: medium;
 }
 
 .description form {
@@ -98,6 +117,13 @@ html {
 }
 
 .form-group small {
+     color: white;
+     font-size: small;
+ }
+
+footer a {
+    position: relative;
     color: white;
     font-size: small;
+    z-index: 1000;
 }
