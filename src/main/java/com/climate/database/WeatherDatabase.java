@@ -99,7 +99,6 @@ public class WeatherDatabase {
 					}
 					sc.close();			
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -141,7 +140,6 @@ public class WeatherDatabase {
 					}				
 					sc.close();			
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
