@@ -1,7 +1,5 @@
 import java.util.*;
 import java.util.Map.Entry;
-import org.knowm.xchart.*;
-import org.knowm.xchart.style.Styler.LegendPosition;
 
 /**
  * A class to perform statistical analysis using the monthly temperature date
