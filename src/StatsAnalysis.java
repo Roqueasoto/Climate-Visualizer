@@ -1,24 +1,16 @@
-import org.apache.*;
-import org.apache.commons.math3.stat.Frequency;
-import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
-import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
-import java.io.*;
 import java.util.*;
 import java.util.Map.Entry;
-import java.awt.Color;
-
 import org.knowm.xchart.*;
-import org.knowm.xchart.demo.charts.ExampleChart;
-import org.knowm.xchart.demo.charts.bar.BarChart01;
-import org.knowm.xchart.demo.charts.bar.BarChart05;
-import org.knowm.xchart.demo.charts.bar.BarChart06;
-import org.knowm.xchart.internal.ChartBuilder;
-import org.knowm.xchart.internal.chartpart.Chart;
 import org.knowm.xchart.style.Styler.LegendPosition;
 
 /**
  * A class to perform statistical analysis using the monthly temperature date
  * from 1900 to 2017 based on the user input location
+ * 
+ * 1) create a line chart to plot the average temperature of the 12 month in a
+ * year from 1900-2017
+ * 
+ * 2) count which month are hottest in a year from 1900-2017
  * 
  * @author Hua
  *
@@ -34,16 +26,13 @@ public class StatsAnalysis {
 
 	// TreeMap to store values of HashMap
 	TreeMap<String, Double> MaxTemp = new TreeMap<>();
-	TreeMap<Double, Double> AvgTemp = new TreeMap<>();
+	TreeMap<Integer, Double> AvgTemp = new TreeMap<>();
 	List<Integer> hottest_month = new ArrayList<Integer>();
 	List<Integer> count = new ArrayList<Integer>();
-
+	List<Double> avg_temperature = new ArrayList<Double>();
+	List<Integer> yearlist = new ArrayList<Integer>();
 	double lat;
 	double lon;
-
-	private ArrayList<Double> climate = new ArrayList<Double>();
-	public static ArrayList<Integer> num = new ArrayList<Integer>();
-	int number = 0;
 
 	/**
 	 * take latitude and longitude as our input
@@ -57,14 +46,17 @@ public class StatsAnalysis {
 	}
 
 	/**
-	 * Read in the temperature for this location across all years and identify the
-	 * max temperature for this.
+	 * This is portion 1 of the histogram Read in the temperature for this location
+	 * across all years and identify the max temperature for this. count how many
+	 * time each month is the hottest from 1900-2017. the returned list would be the
+	 * y axis for the histogram
 	 * 
 	 * @param lon
 	 * @param lat
-	 * @return
+	 * @return a list of counts of month when they are the hottest month within each
+	 *         year from 1900-2017
 	 */
-	public Map<String, Double> max_temp_year() {
+	public List<Integer> getHottestMonCount() {
 		WeatherDatabase wd = new WeatherDatabase(lon, lat);
 		Year[] allData = wd.getYearlyTemp();
 
@@ -125,41 +117,13 @@ public class StatsAnalysis {
 			}
 
 			maxtemp.put(maxYearMonth, maxTemp);
-			if (y < 2) {
 
-				System.out.println("temp for jan is " + allData[y].getJan());
-				System.out.println("temp for feb is " + allData[y].getFeb());
-				System.out.println("temp for mar is " + allData[y].getMar());
-				System.out.println("temp for apr is " + allData[y].getApr());
-				System.out.println("temp for may is " + allData[y].getMay());
-				System.out.println("temp for jun is " + allData[y].getJun());
-				System.out.println("temp for jul is " + allData[y].getJul());
-				System.out.println("temp for aug is " + allData[y].getAug());
-				System.out.println("temp for sep is " + allData[y].getSep());
-				System.out.println("temp for oct is " + allData[y].getOct());
-				System.out.println("temp for nov is " + allData[y].getNov());
-				System.out.println("temp for dec is " + allData[y].getDec());
-			}
 		}
 
 		// Copy all data from hashMap into TreeMap
 		MaxTemp.putAll(maxtemp);
-
-		// Display the TreeMap which is naturally sorted
-		for (Entry<String, Double> entry : MaxTemp.entrySet())
-			System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-
-		return MaxTemp;
-
-	}
-
-	/**
-	 * count how many time each month is the hottest from 1900-2017
-	 * 
-	 * @param maxtemplist
-	 * @return
-	 */
-	public List<Integer> getHottestMonCount(Map<String, Double> maxtemplist) {
+		
+		//get the frequency of hottest month in 1900-2017
 		int sum_01 = 0;
 		int sum_02 = 0;
 		int sum_03 = 0;
@@ -172,7 +136,7 @@ public class StatsAnalysis {
 		int sum_10 = 0;
 		int sum_11 = 0;
 		int sum_12 = 0;
-		for (Entry<String, Double> entry : maxtemplist.entrySet()) {
+		for (Entry<String, Double> entry : MaxTemp.entrySet()) {
 			if (entry.getKey().substring(4).equals("01")) {
 				sum_01 = sum_01 + 1;
 			}
@@ -224,11 +188,15 @@ public class StatsAnalysis {
 		count.add(sum_12);
 		return count;
 	}
-
+	
+	
 	/**
-	 * create a
+	 * This is portion 2 of the histogram.
+	 * Read in the temperature for this location
+	 * create a list of month (jan-dec). the returned list would be the x axis of
+	 * the histogram
 	 * 
-	 * @return
+	 * @return a list of 12 month by natural order
 	 */
 	public List<Integer> getMonth() {
 		for (int m = 1; m < 13; m++) {
@@ -239,18 +207,19 @@ public class StatsAnalysis {
 	}
 
 	/**
-	 * get average temperature for selected location in a year
+	 * This is portion 1 of the bar chart get average temperature for selected
+	 * location in a year in the natural order of 1900-2017
 	 * 
 	 * @param lon
 	 * @param lat
-	 * @return
+	 * @return a a list of value as the average temperature
 	 */
-	public Map<Double, Double> avg_temp_year() {
+	public List<Double> getAvgTemp() {
 		WeatherDatabase wd = new WeatherDatabase(lon, lat);
 		Year[] allData = wd.getYearlyTemp();
-		Map<Double, Double> avgtemp = new HashMap<Double, Double>();
+		Map<Integer, Double> avgtemp = new HashMap<Integer, Double>();
 		for (int y = 0; y < allData.length; y++) {
-			double year = 1900 + y;
+			int year = 1900 + y;
 			double sum_temp;
 			sum_temp = allData[y].getJan() + allData[y].getFeb() + allData[y].getMar() + allData[y].getApr()
 					+ allData[y].getMay() + allData[y].getJun() + allData[y].getJul() + allData[y].getAug()
@@ -261,52 +230,28 @@ public class StatsAnalysis {
 
 		// Copy all data from hashMap into TreeMap
 		AvgTemp.putAll(avgtemp);
-
-		// Display the TreeMap which is naturally sorted
-		for (Entry<Double, Double> entry : AvgTemp.entrySet())
-			System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-
-		System.out.println(AvgTemp);
-		return AvgTemp;
-
-	}
-
-	public static void main(String[] args) {
-
-		StatsAnalysis climatedata = new StatsAnalysis(12.33, 25.66);
-
-		climatedata.max_temp_year();
-		climatedata.avg_temp_year();
-
-		Set<Entry<Double, Double>> AvgTempEntrySet = climatedata.AvgTemp.entrySet();
-		ArrayList<Entry<Double, Double>> yearList = new ArrayList<Entry<Double, Double>>(AvgTempEntrySet);
-
-		Collection<Double> AvgTempValues = climatedata.AvgTemp.values();
-		ArrayList<Double> listOfValues = new ArrayList<Double>(AvgTempValues);
-
-		double[] yearlist = new double[yearList.size()];
-		double[] avgtemplist = new double[listOfValues.size()];
-
-		for (int i = 0; i < yearlist.length; i++) {
-			yearlist[i] = yearList.get(i).getKey();
-			avgtemplist[i] = yearList.get(i).getValue();
+		
+		for (int i = 0; i<AvgTemp.size(); i++) {
+			int year = 1900 + i;
+			avg_temperature.add(AvgTemp.get(year));
 		}
 
-		System.out.println(Arrays.toString(yearlist));
-
-		// Create Line Chart
-		XYChart chart = QuickChart.getChart("Average Temperature for Selected Location (1900-2017)", "Year",
-				"Average Temperature", "y(x)", yearlist, avgtemplist);
-		new SwingWrapper<XYChart>(chart).displayChart();
-
-		// Create Bar Chart
-		CategoryChart chart3 = new CategoryChartBuilder().width(800).height(600).title("Hotest Month Histogram")
-				.xAxisTitle("Month").yAxisTitle("Count").build();
-
-		chart3.getStyler().setLegendPosition(LegendPosition.InsideNW);
-		chart3.getStyler().setHasAnnotations(true);
-		chart3.addSeries("Count", climatedata.getMonth(), climatedata.getHottestMonCount(climatedata.MaxTemp));
-		new SwingWrapper<CategoryChart>(chart3).displayChart();
-
+		return avg_temperature;
 	}
+	
+	/**
+	 * This is portion 2 of the bar chart
+	 * create a list of year (1900-2017). the returned list would be the x axis of
+	 * the histogram
+	 * 
+	 * @return a list of 12 month by natural order
+	 */
+	public List<Integer> getYear() {
+		for (int y = 1900; y < 2018; y++) {
+			yearlist.add(y);
+		}
+		return yearlist;
+
+	}	
+	
 }
