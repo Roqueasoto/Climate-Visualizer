@@ -14,7 +14,7 @@ import java.util.Optional;
 @Controller
 public class ClimateController {
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String homePageGet (ModelMap model) {
         // TODO Fetch Addresses
 
@@ -23,9 +23,12 @@ public class ClimateController {
         return "index";
     }
 
-    @PostMapping("/index")
+    @PostMapping("/")
     public String AddressPost (@ModelAttribute Address input,
                                ModelMap model) {
+
+        //-----------------------------GEOLOCATION----------------------------//
+
         // Initialize GeoLocator
         GeoLocator geoCode = new GeoLocator();
 
@@ -50,6 +53,13 @@ public class ClimateController {
             // if the query raises an error, then send to the failed query page
             return "failedQuery";
         }
+
+        //--------------------------------------------------------------------//
+
+
+        //--------------------------------------------------------------------//
+
+
 
         // TODO Add resulting figure
 
