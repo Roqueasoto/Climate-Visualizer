@@ -6,7 +6,7 @@ This app was developed by Henry Lui, Edward (Hua) Zeng, and Roque Soto Castaneda
 Our main goals for this project were to create an application that was both easy to use and could reveal personalized and interesting information about the user. In order to maintain the ease of use and access we landed on developing the application as a web-app that takes a single input from the user (their address) and allows the user to navigate from page to page at the use of a button. It was also important that the application not crash regardless of user input, so we implemented failsafe mechanisms to maintain ease of access for the user. 
 
 ## Project Design
-We broke down the project into 4 main components as can be seen in our very rudimentary ![design layout.](/images/logo.png)
+We broke down the project into 4 main components as can be seen in our very rudimentary design layout. ![](/DesignDocument.png)
 
 Aside from the technologies listed below, we used [Gradle](https://gradle.org/) as our tool of choice for building the web-application.
 
