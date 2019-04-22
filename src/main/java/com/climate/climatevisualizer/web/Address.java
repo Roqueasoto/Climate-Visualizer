@@ -1,5 +1,8 @@
 package com.climate.climatevisualizer.web;
 
+/**
+ * An Address class to contain data inputted by the user.
+ */
 public class Address {
     private String address;
 
