@@ -1,5 +1,8 @@
+package com.climate.Analysis;
+
 import java.util.*;
 import java.util.Map.Entry;
+import com.climate.database.*;
 
 /**
  * A class to perform statistical analysis using the monthly temperature date
@@ -48,9 +51,7 @@ public class StatsAnalysis {
 	 * across all years and identify the max temperature for this. count how many
 	 * time each month is the hottest from 1900-2017. the returned list would be the
 	 * y axis for the histogram
-	 * 
-	 * @param lon
-	 * @param lat
+	 *
 	 * @return a list of counts of month when they are the hottest month within each
 	 *         year from 1900-2017
 	 */
@@ -205,11 +206,9 @@ public class StatsAnalysis {
 	}
 
 	/**
-	 * This is portion 1 of the bar chart get average temperature for selected
+	 * This is portion 1 of the line chart get average temperature for selected
 	 * location in a year in the natural order of 1900-2017
-	 * 
-	 * @param lon
-	 * @param lat
+	 *
 	 * @return a a list of value as the average temperature
 	 */
 	public List<Double> getAvgTemp() {
@@ -226,7 +225,7 @@ public class StatsAnalysis {
 			avgtemp.put(year, avg_temp);
 		}
 
-		// Copy all data from hashMap into TreeMap
+		// Copy all data from hashMap into List
 		AvgTemp.putAll(avgtemp);
 		
 		for (int i = 0; i<AvgTemp.size(); i++) {
@@ -238,7 +237,7 @@ public class StatsAnalysis {
 	}
 	
 	/**
-	 * This is portion 2 of the bar chart
+	 * This is portion 2 of the line chart
 	 * create a list of year (1900-2017). the returned list would be the x axis of
 	 * the histogram
 	 * 

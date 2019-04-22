@@ -1,9 +1,7 @@
-import org.knowm.xchart.CategoryChart;
-import org.knowm.xchart.CategoryChartBuilder;
-import org.knowm.xchart.QuickChart;
-import org.knowm.xchart.SwingWrapper;
-import org.knowm.xchart.XYChart;
-import org.knowm.xchart.style.Styler.LegendPosition;
+package com.climate.Analysis;
+
+
+/* This is for future use in a Junit Test Case.
 
 public class StatsAnalysisTester {
 
@@ -26,3 +24,4 @@ public class StatsAnalysisTester {
 	}
 	
 }
+*/
