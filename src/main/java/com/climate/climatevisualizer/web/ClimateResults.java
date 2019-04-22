@@ -1,7 +1,8 @@
 package com.climate.climatevisualizer.web;
 
 /**
- * A class to store climate index search results.
+ * A class to store climate index search results. This class is temporary and
+ * for testing purposes exclusively.
  */
 public class ClimateResults {
     private double lat;

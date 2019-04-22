@@ -14,15 +14,29 @@ import java.util.Optional;
 @Controller
 public class ClimateController {
 
+    /**
+     * Method for controller to listen to GET requests from the root domain
+     * of the site and create a model and new address template to fill with
+     * user data from template engine.
+     * @param model
+     * @return
+     */
     @GetMapping("/")
     public String homePageGet (ModelMap model) {
-        // TODO Fetch Addresses
 
+        // Add an empty Address object to be filled later
         model.addAttribute("input", new Address());
 
         return "index";
     }
 
+    /**
+     * Method for controller to listen to POST requests from the site and
+     * take user information from the model for plotting.
+     * @param input
+     * @param model
+     * @return
+     */
     @PostMapping("/")
     public String AddressPost (@ModelAttribute Address input,
                                ModelMap model) {
@@ -44,7 +58,10 @@ public class ClimateController {
                 return "failedQuery";
             }
 
-            // If response is available, then strip optional and add to model
+            /* If response is available, then strip optional and add to model
+               as a ClimateResults object. This is temporary and for testing
+               purposes. It will be replaced when the data analysis section
+               is finished. */
             ClimateResults results = new ClimateResults(latLon.get().getFirst(),
                     latLon.get().getSecond());
             model.addAttribute("results", results);
@@ -54,14 +71,14 @@ public class ClimateController {
             return "failedQuery";
         }
 
-        //--------------------------------------------------------------------//
+        //----------------------------DATABASE SEARCH------------------------//
 
 
-        //--------------------------------------------------------------------//
+        //-----------------------------DATA ANALYSIS-------------------------//
 
 
 
-        // TODO Add resulting figure
+        // TODO Add resulting data to MODEL and use Javascript for Figures.
 
         // Take user to the final page.
         return "climate";
