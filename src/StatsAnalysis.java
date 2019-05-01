@@ -11,7 +11,7 @@ import java.util.Map.Entry;
  * 2) count which month are hottest in a year from 1900-2017 create a histogram
  * of this
  * 
- * 3) create a line chart get median hottest month for each ten years in the
+ * 3) create a line chart get mode hottest month for each ten years in the
  * natural order of 1900-2017
  * 
  * 
@@ -259,19 +259,19 @@ public class StatsAnalysis {
 	}	
 	
 	/**
-	 * This is portion 1 of the line chart get median hottest month for selected
+	 * This is portion 1 of the line chart get mode hottest month for selected
 	 * location for each ten years in the natural order of 1900-2017
 	 * this returns the y axis for the line chart
 	 * 
 	 * @param lon
 	 * @param lat
-	 * @return a a list of value as the median hottest month
+	 * @return a a list of value as the mode hottest month
 	 */
-	public List<Double> getMedianHottestMonth() {
+	public List<Integer> getModeHottestMonth() {
 		
 		TreeMap<Integer, Double> MaxMonth = new TreeMap<>();
 		Map<Integer, Double> maxmonth = new HashMap<Integer, Double>();
-		List<Double> medianHottestMonth = new ArrayList<Double>();
+		List<Integer> modeHottestMonth = new ArrayList<Integer>();
 		
 		WeatherDatabase wd = new WeatherDatabase(lon, lat);
 		Year[] allData = wd.getYearlyTemp();
@@ -338,38 +338,99 @@ public class StatsAnalysis {
 		// Copy all data from hashMap into TreeMap
 		MaxMonth.putAll(maxmonth);		
 		
+		int[] month_list = new int[12];
+		
 		for (int j = 1; j < 13; j++) {
+			Map<Integer, Integer> monthcount = new HashMap<Integer, Integer>();
+
 			int yr_lower_bount = 1900 + (j - 1) * 10;
 			int yr_upper_bound = 1900 + (j * 10) - 1;
-			double[] month_list = new double[10];
-			int iso = 0;
+			
+			int count_01 = 0;
+			int count_02 = 0;
+			int count_03 = 0;
+			int count_04 = 0;
+			int count_05 = 0;
+			int count_06 = 0;
+			int count_07 = 0;
+			int count_08 = 0;
+			int count_09 = 0;
+			int count_10 = 0;
+			int count_11 = 0;
+			int count_12 = 0;
+			
 			for (Entry<Integer, Double> entry : MaxMonth.entrySet()) {
 				if (entry.getKey() >= yr_lower_bount & entry.getKey() <= yr_upper_bound) {
-					month_list[iso] = entry.getValue();
-					iso++;
+
+
+					if (entry.getValue()==1) {
+						count_01 = count_01 + 1;
+					}
+					if (entry.getValue()==2) {
+						count_02 = count_02 + 1;
+					}
+					if (entry.getValue()==3) {
+						count_03 = count_03 + 1;
+					}
+					if (entry.getValue()==4) {
+						count_04 = count_04 + 1;
+					}
+					if (entry.getValue()==5) {
+						count_05 = count_05 + 1;
+					}
+					if (entry.getValue()==6) {
+						count_06 = count_06 + 1;
+					}
+					if (entry.getValue()==7) {
+						count_07 = count_07 + 1;
+					}
+					if (entry.getValue()==8) {
+						count_08 = count_08 + 1;
+					}
+					if (entry.getValue()==9) {
+						count_09 = count_09 + 1;
+					}
+					if (entry.getValue()==10) {
+						count_10 = count_10 + 1;
+					}
+					if (entry.getValue()==11) {
+						count_11 = count_11 + 1;
+					}
+					if (entry.getValue()==12) {
+						count_12 = count_12 + 1;
+					}
 				}
 			}
 			
-			//calculate the median
-			double median = 0;
-			double numerator = 0;
-
-			Arrays.sort(month_list);
-
-			if (month_list.length % 2 == 1) {
-				median = month_list[month_list.length / 2];
-			} else {
-				numerator = month_list[(month_list.length - 1) / 2] + month_list[month_list.length / 2];
-				median = numerator / 2;
-
+			monthcount.put(1, count_01);
+			monthcount.put(2, count_02);
+			monthcount.put(3, count_03);
+			monthcount.put(4, count_04);
+			monthcount.put(5, count_05);
+			monthcount.put(6, count_06);
+			monthcount.put(7, count_07);
+			monthcount.put(8, count_08);
+			monthcount.put(9, count_09);
+			monthcount.put(10, count_10);
+			monthcount.put(11, count_11);
+			monthcount.put(12, count_12);
+			
+			int max_month_count = 0;
+			int max_month_name = 0;
+			for (Entry<Integer, Integer> entry : monthcount.entrySet()) {
+				if (entry.getValue()>max_month_count) {
+					max_month_name = entry.getKey();
+					max_month_count = entry.getValue();
+				}
 			}
-			medianHottestMonth.add(median);
+			
+			modeHottestMonth.add(max_month_name);
 		}
-		return medianHottestMonth;		
+		return modeHottestMonth;		
 	}
 	
 	/**
-	 * This is portion 2 of the line chart get median hottest month for selected
+	 * This is portion 2 of the line chart get mode hottest month for selected
 	 * location for each ten years in the natural order of 1900-2017. the returned
 	 * list would be the x axis of the line chart
 	 * 
@@ -387,7 +448,7 @@ public class StatsAnalysis {
 	}	
 	
 	/**
-	 * supplement section for the line chart to get median hottest month for
+	 * supplement section for the line chart to get mode hottest month for
 	 * selected location for each ten years in the natural order of 1900-2017. if a
 	 * list of double needed
 	 * 
