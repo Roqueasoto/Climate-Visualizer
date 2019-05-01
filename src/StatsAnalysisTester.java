@@ -26,8 +26,8 @@ public class StatsAnalysisTester {
 		new SwingWrapper<CategoryChart>(chart2).displayChart();
 
 		// Create Line Chart for median hottest month for each 10 years
-		XYChart chart3 = QuickChart.getChart("Median Hottest Month for Every 10 Years (1900-2017)", "Year Range",
-				"Median Hottest Month", "y(x)", climatedata.getEachTenYearsInt(), climatedata.getMedianHottestMonth());
+		XYChart chart3 = QuickChart.getChart("Mode Hottest Month for Every 10 Years (1900-2017)", "Year Range",
+				"Median Hottest Month", "y(x)", climatedata.getEachTenYearsInt(), climatedata.getModeHottestMonth());
 		new SwingWrapper<XYChart>(chart3).displayChart();		
 
 		// Create Line Chart for average temperature of Jan to Dec
