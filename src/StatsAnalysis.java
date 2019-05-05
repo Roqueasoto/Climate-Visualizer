@@ -188,10 +188,6 @@ public class StatsAnalysis {
 					+ allData[y].getMay() + allData[y].getJun() + allData[y].getJul() + allData[y].getAug()
 					+ allData[y].getSep() + allData[y].getOct() + allData[y].getNov() + allData[y].getDec();
 			double avg_temp = sum_temp / 12;
-			if (y == 0 | y == allData.length - 1) {
-				System.out.println("year is " + year);
-				System.out.println("temp is " + sum_temp);
-			}
 			avgtemp.put(year, avg_temp);
 		}
 
