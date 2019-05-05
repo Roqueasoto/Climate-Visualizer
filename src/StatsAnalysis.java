@@ -50,11 +50,11 @@ public class StatsAnalysis {
 	 *         year from 1900-2017
 	 */
 	public List<Integer> getHottestMonCount() {
-		
+
 		TreeMap<String, Double> MaxTemp = new TreeMap<>();
 		Map<String, Double> maxtemp = new HashMap<String, Double>();
 		List<Integer> count = new ArrayList<Integer>();
-		
+
 		WeatherDatabase wd = new WeatherDatabase(lon, lat);
 		Year[] allData = wd.getYearlyTemp();
 
@@ -119,77 +119,35 @@ public class StatsAnalysis {
 
 		// Copy all data from hashMap into TreeMap
 		MaxTemp.putAll(maxtemp);
-		
-		//get the frequency of hottest month in 1900-2017
-		int sum_01 = 0;
-		int sum_02 = 0;
-		int sum_03 = 0;
-		int sum_04 = 0;
-		int sum_05 = 0;
-		int sum_06 = 0;
-		int sum_07 = 0;
-		int sum_08 = 0;
-		int sum_09 = 0;
-		int sum_10 = 0;
-		int sum_11 = 0;
-		int sum_12 = 0;
+
+		// get the frequency of hottest month in 1900-2017
+		int sum[] = new int[12];
+
+		// aggregate the counts to the month level
 		for (Entry<String, Double> entry : MaxTemp.entrySet()) {
-			if (entry.getKey().substring(4).equals("01")) {
-				sum_01 = sum_01 + 1;
-			}
-			if (entry.getKey().substring(4).equals("02")) {
-				sum_02 = sum_02 + 1;
-			}
-			if (entry.getKey().substring(4).equals("03")) {
-				sum_03 = sum_03 + 1;
-			}
-			if (entry.getKey().substring(4).equals("04")) {
-				sum_04 = sum_04 + 1;
-			}
-			if (entry.getKey().substring(4).equals("05")) {
-				sum_05 = sum_05 + 1;
-			}
-			if (entry.getKey().substring(4).equals("06")) {
-				sum_06 = sum_06 + 1;
-			}
-			if (entry.getKey().substring(4).equals("07")) {
-				sum_07 = sum_07 + 1;
-			}
-			if (entry.getKey().substring(4).equals("08")) {
-				sum_08 = sum_08 + 1;
-			}
-			if (entry.getKey().substring(4).equals("09")) {
-				sum_09 = sum_09 + 1;
-			}
-			if (entry.getKey().substring(4).equals("10")) {
-				sum_10 = sum_10 + 1;
-			}
-			if (entry.getKey().substring(4).equals("11")) {
-				sum_11 = sum_11 + 1;
-			}
-			if (entry.getKey().substring(4).equals("12")) {
-				sum_12 = sum_12 + 1;
+			for (int i = 0; i < 12; i++) {
+				if (i < 9) {
+					if (Integer.valueOf(entry.getKey().substring(5)) == i + 1) {
+						sum[i] = sum[i] + 1;
+					}
+				} else {
+					if (Integer.valueOf(entry.getKey().substring(4)) == i + 1) {
+						sum[i] = sum[i] + 1;
+					}
+				}
 			}
 		}
-		count.add(sum_01);
-		count.add(sum_02);
-		count.add(sum_03);
-		count.add(sum_04);
-		count.add(sum_05);
-		count.add(sum_06);
-		count.add(sum_07);
-		count.add(sum_08);
-		count.add(sum_09);
-		count.add(sum_10);
-		count.add(sum_11);
-		count.add(sum_12);
+
+		// put the counts into ArrayList
+		for (int i : sum) {
+			count.add(i);
+		}
+
 		return count;
 	}
-	
-	
+
 	/**
-	 * This is portion 2 of the histogram.
-	 * Read in the temperature for this location
+	 * This is portion 2 of the histogram. Read in the temperature for this location
 	 * create a list of month (jan-dec). the returned list would be the x axis of
 	 * the histogram
 	 * 
@@ -206,8 +164,8 @@ public class StatsAnalysis {
 
 	/**
 	 * This is portion 1 of the line chart get average temperature for selected
-	 * location in a year in the natural order of 1900-2017
-	 * this returns the y axis for the line chart
+	 * location in a year in the natural order of 1900-2017 this returns the y axis
+	 * for the line chart
 	 * 
 	 * @param lon
 	 * @param lat
@@ -222,6 +180,7 @@ public class StatsAnalysis {
 		WeatherDatabase wd = new WeatherDatabase(lon, lat);
 		Year[] allData = wd.getYearlyTemp();
 		
+		//calculate the average temperature for each year
 		for (int y = 0; y < allData.length; y++) {
 			int year = 1900 + y;
 			double sum_temp;
@@ -229,24 +188,27 @@ public class StatsAnalysis {
 					+ allData[y].getMay() + allData[y].getJun() + allData[y].getJul() + allData[y].getAug()
 					+ allData[y].getSep() + allData[y].getOct() + allData[y].getNov() + allData[y].getDec();
 			double avg_temp = sum_temp / 12;
+			if (y == 0 | y == allData.length - 1) {
+				System.out.println("year is " + year);
+				System.out.println("temp is " + sum_temp);
+			}
 			avgtemp.put(year, avg_temp);
 		}
 
 		// Copy all data from hashMap into TreeMap
 		AvgTemp.putAll(avgtemp);
-		
-		for (int i = 0; i<AvgTemp.size(); i++) {
+
+		for (int i = 0; i < AvgTemp.size(); i++) {
 			int year = 1900 + i;
 			avg_temperature.add(AvgTemp.get(year));
 		}
 
 		return avg_temperature;
 	}
-	
+
 	/**
-	 * This is portion 2 of the line chart
-	 * create a list of year (1900-2017). the returned list would be the x axis of
-	 * the line chart
+	 * This is portion 2 of the line chart create a list of year (1900-2017). the
+	 * returned list would be the x axis of the line chart
 	 * 
 	 * @return a list of 12 month by natural order
 	 */
@@ -256,23 +218,23 @@ public class StatsAnalysis {
 			yearlist.add(y);
 		}
 		return yearlist;
-	}	
-	
+	}
+
 	/**
 	 * This is portion 1 of the line chart get mode hottest month for selected
-	 * location for each ten years in the natural order of 1900-2017
-	 * this returns the y axis for the line chart
+	 * location for each ten years in the natural order of 1900-2017 this returns
+	 * the y axis for the line chart
 	 * 
 	 * @param lon
 	 * @param lat
 	 * @return a a list of value as the mode hottest month
 	 */
 	public List<Integer> getModeHottestMonth() {
-		
+
 		TreeMap<Integer, Double> MaxMonth = new TreeMap<>();
 		Map<Integer, Double> maxmonth = new HashMap<Integer, Double>();
 		List<Integer> modeHottestMonth = new ArrayList<Integer>();
-		
+
 		WeatherDatabase wd = new WeatherDatabase(lon, lat);
 		Year[] allData = wd.getYearlyTemp();
 
@@ -336,99 +298,45 @@ public class StatsAnalysis {
 		}
 
 		// Copy all data from hashMap into TreeMap
-		MaxMonth.putAll(maxmonth);		
-		
-		int[] month_list = new int[12];
-		
+		MaxMonth.putAll(maxmonth);
+
 		for (int j = 1; j < 13; j++) {
 			Map<Integer, Integer> monthcount = new HashMap<Integer, Integer>();
 
 			int yr_lower_bount = 1900 + (j - 1) * 10;
 			int yr_upper_bound = 1900 + (j * 10) - 1;
-			
-			int count_01 = 0;
-			int count_02 = 0;
-			int count_03 = 0;
-			int count_04 = 0;
-			int count_05 = 0;
-			int count_06 = 0;
-			int count_07 = 0;
-			int count_08 = 0;
-			int count_09 = 0;
-			int count_10 = 0;
-			int count_11 = 0;
-			int count_12 = 0;
-			
+
+			int[] counts = new int[12];
+
 			for (Entry<Integer, Double> entry : MaxMonth.entrySet()) {
 				if (entry.getKey() >= yr_lower_bount & entry.getKey() <= yr_upper_bound) {
 
-
-					if (entry.getValue()==1) {
-						count_01 = count_01 + 1;
-					}
-					if (entry.getValue()==2) {
-						count_02 = count_02 + 1;
-					}
-					if (entry.getValue()==3) {
-						count_03 = count_03 + 1;
-					}
-					if (entry.getValue()==4) {
-						count_04 = count_04 + 1;
-					}
-					if (entry.getValue()==5) {
-						count_05 = count_05 + 1;
-					}
-					if (entry.getValue()==6) {
-						count_06 = count_06 + 1;
-					}
-					if (entry.getValue()==7) {
-						count_07 = count_07 + 1;
-					}
-					if (entry.getValue()==8) {
-						count_08 = count_08 + 1;
-					}
-					if (entry.getValue()==9) {
-						count_09 = count_09 + 1;
-					}
-					if (entry.getValue()==10) {
-						count_10 = count_10 + 1;
-					}
-					if (entry.getValue()==11) {
-						count_11 = count_11 + 1;
-					}
-					if (entry.getValue()==12) {
-						count_12 = count_12 + 1;
+					for (int i = 0; i < 12; i++) {
+						if (entry.getValue() == i + 1) {
+							counts[i] = counts[i] + 1;
+						}
 					}
 				}
 			}
-			
-			monthcount.put(1, count_01);
-			monthcount.put(2, count_02);
-			monthcount.put(3, count_03);
-			monthcount.put(4, count_04);
-			monthcount.put(5, count_05);
-			monthcount.put(6, count_06);
-			monthcount.put(7, count_07);
-			monthcount.put(8, count_08);
-			monthcount.put(9, count_09);
-			monthcount.put(10, count_10);
-			monthcount.put(11, count_11);
-			monthcount.put(12, count_12);
-			
+
+			for (int i = 0; i < 12; i++) {
+				monthcount.put(i + 1, counts[i]);
+			}
+
 			int max_month_count = 0;
 			int max_month_name = 0;
 			for (Entry<Integer, Integer> entry : monthcount.entrySet()) {
-				if (entry.getValue()>max_month_count) {
+				if (entry.getValue() > max_month_count) {
 					max_month_name = entry.getKey();
 					max_month_count = entry.getValue();
 				}
 			}
-			
+
 			modeHottestMonth.add(max_month_name);
 		}
-		return modeHottestMonth;		
+		return modeHottestMonth;
 	}
-	
+
 	/**
 	 * This is portion 2 of the line chart get mode hottest month for selected
 	 * location for each ten years in the natural order of 1900-2017. the returned
@@ -445,12 +353,12 @@ public class StatsAnalysis {
 			year_range_list.add(year_range);
 		}
 		return year_range_list;
-	}	
-	
+	}
+
 	/**
-	 * supplement section for the line chart to get mode hottest month for
-	 * selected location for each ten years in the natural order of 1900-2017. if a
-	 * list of double needed
+	 * supplement section for the line chart to get mode hottest month for selected
+	 * location for each ten years in the natural order of 1900-2017. if a list of
+	 * double needed
 	 * 
 	 * @return a list of start year.
 	 */
@@ -463,7 +371,7 @@ public class StatsAnalysis {
 		}
 		return year_range_list;
 	}
-	
+
 	/**
 	 * This is portion 1 of the line chart to get average temperature by month for
 	 * selected location of 1900-2017
@@ -480,71 +388,43 @@ public class StatsAnalysis {
 
 		WeatherDatabase wd = new WeatherDatabase(lon, lat);
 		Year[] allData = wd.getYearlyTemp();
+
+		double[] sum_month_temp = new double[12];
+		double[] avg_month_temp = new double[12];
 		
-		double sum_jan_temp = 0;
-		double sum_feb_temp = 0;
-		double sum_mar_temp = 0;
-		double sum_apr_temp = 0;
-		double sum_may_temp = 0;
-		double sum_jun_temp = 0;
-		double sum_jul_temp = 0;
-		double sum_aug_temp = 0;
-		double sum_sep_temp = 0;
-		double sum_oct_temp = 0;
-		double sum_nov_temp = 0;
-		double sum_dec_temp = 0;
-		
+		//sum up the temperature
 		for (int y = 0; y < allData.length; y++) {
 			int year = 1900 + y;
-			sum_jan_temp = sum_jan_temp + allData[y].getJan();
-			sum_feb_temp = sum_feb_temp + allData[y].getFeb();
-			sum_mar_temp = sum_mar_temp + allData[y].getMar();
-			sum_apr_temp = sum_apr_temp + allData[y].getApr();
-			sum_may_temp = sum_may_temp + allData[y].getMay();
-			sum_jun_temp = sum_jun_temp + allData[y].getJun();
-			sum_jul_temp = sum_jul_temp + allData[y].getJul();
-			sum_aug_temp = sum_aug_temp + allData[y].getAug();
-			sum_sep_temp = sum_sep_temp + allData[y].getSep();
-			sum_oct_temp = sum_oct_temp + allData[y].getOct();
-			sum_nov_temp = sum_nov_temp + allData[y].getNov();
-			sum_dec_temp = sum_dec_temp + allData[y].getDec();
+			sum_month_temp[1 - 1] = sum_month_temp[1 - 1] + allData[y].getJan();
+			sum_month_temp[2 - 1] = sum_month_temp[2 - 1] + allData[y].getFeb();
+			sum_month_temp[3 - 1] = sum_month_temp[3 - 1] + allData[y].getMar();
+			sum_month_temp[4 - 1] = sum_month_temp[4 - 1] + allData[y].getApr();
+			sum_month_temp[5 - 1] = sum_month_temp[5 - 1] + allData[y].getMay();
+			sum_month_temp[6 - 1] = sum_month_temp[6 - 1] + allData[y].getJun();
+			sum_month_temp[7 - 1] = sum_month_temp[7 - 1] + allData[y].getJul();
+			sum_month_temp[8 - 1] = sum_month_temp[8 - 1] + allData[y].getAug();
+			sum_month_temp[9 - 1] = sum_month_temp[9 - 1] + allData[y].getSep();
+			sum_month_temp[10 - 1] = sum_month_temp[10 - 1] + allData[y].getOct();
+			sum_month_temp[11 - 1] = sum_month_temp[11 - 1] + allData[y].getNov();
+			sum_month_temp[12 - 1] = sum_month_temp[12 - 1] + allData[y].getDec();
+
 		}
 		
-		double avg_jan_temp = sum_jan_temp/allData.length;
-		double avg_feb_temp = sum_feb_temp/allData.length;
-		double avg_mar_temp = sum_mar_temp/allData.length;
-		double avg_apr_temp = sum_apr_temp/allData.length;
-		double avg_may_temp = sum_may_temp/allData.length;
-		double avg_jun_temp = sum_jun_temp/allData.length;
-		double avg_jul_temp = sum_jul_temp/allData.length;
-		double avg_aug_temp = sum_aug_temp/allData.length;
-		double avg_sep_temp = sum_sep_temp/allData.length;
-		double avg_oct_temp = sum_oct_temp/allData.length;
-		double avg_nov_temp = sum_nov_temp/allData.length;
-		double avg_dec_temp = sum_dec_temp/allData.length;
-		
-		avgmontemp.put(1, avg_jan_temp);
-		avgmontemp.put(2, avg_feb_temp);
-		avgmontemp.put(3, avg_mar_temp);
-		avgmontemp.put(4, avg_apr_temp);
-		avgmontemp.put(5, avg_may_temp);
-		avgmontemp.put(6, avg_jun_temp);
-		avgmontemp.put(7, avg_jul_temp);
-		avgmontemp.put(8, avg_aug_temp);
-		avgmontemp.put(9, avg_sep_temp);
-		avgmontemp.put(10, avg_oct_temp);
-		avgmontemp.put(11, avg_nov_temp);
-		avgmontemp.put(12, avg_dec_temp);
-		
+		//calculate the average monthly temperature
+		for (int i = 0; i < 12; i++) {
+			avg_month_temp[i] = sum_month_temp[i] / allData.length;
+			avgmontemp.put(i + 1, avg_month_temp[i]);
+		}
+
 		// Copy all data from hashMap into TreeMap
 		AvgMonTemp.putAll(avgmontemp);
-		
-		for (int i = 0; i<AvgMonTemp.size(); i++) {
+
+		for (int i = 0; i < AvgMonTemp.size(); i++) {
 			int mon = i + 1;
 			avg_mon_temperature.add(AvgMonTemp.get(mon));
 		}
-		
-		return avg_mon_temperature;	
+
+		return avg_mon_temperature;
 	}
 
 	/**
@@ -554,13 +434,13 @@ public class StatsAnalysis {
 	 * @return a list of 12 month by natural order
 	 */
 	public List<Double> getMonthNum() {
-		
+
 		List<Double> month_num = new ArrayList<Double>();
 		for (int m = 1; m < 13; m++) {
 			double mon = m;
 			month_num.add(mon);
 		}
-		
+
 		return month_num;
 
 	}
